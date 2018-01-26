@@ -26,8 +26,8 @@ namespace ge {
         Vector operator~(); //get a new Vector object which is normalized
 
         float magnitude();
-        void normalize();
-        void reverse();
+        Vector& normalize();
+        Vector& reverse();
     };
 
     inline Vector::Vector() {
@@ -90,7 +90,7 @@ namespace ge {
         return (float) std::sqrt(x * x + y * y + z * z);
     }
 
-    inline void Vector::normalize() {
+    inline Vector& Vector::normalize() {
         float m = Vector::magnitude();
         if (m <= FLOAT_TOL) m = 1.0f;
         x /= m;
@@ -100,12 +100,16 @@ namespace ge {
         if (std::fabs(x) < FLOAT_TOL) x = 0.0f;
         if (std::fabs(y) < FLOAT_TOL) y = 0.0f;
         if (std::fabs(z) < FLOAT_TOL) z = 0.0f;
+        
+        return *this;
     }
 
-    inline void Vector::reverse() {
+    inline Vector& Vector::reverse() {
         x = -x;
         y = -y;
         z = -z;
+
+        return *this;
     }
 
     inline Vector operator+(const Vector &u, const Vector &v) {

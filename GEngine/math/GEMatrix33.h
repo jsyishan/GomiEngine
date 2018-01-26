@@ -1,8 +1,6 @@
 #ifndef GEMATRIX33_H
 #define GEMATRIX33_H
 
-#include <cmath>
-
 #include "GEConstant.h"
 #include "GEVector.h"
 
