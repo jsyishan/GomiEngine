@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/math/GEMatrix33.h"
+#include "../GEngine/math/GEMatrix33.h"
 
 void print(ge::Matrix33 m) {
     std::cout << 
@@ -29,6 +29,6 @@ int main() {
 
     ge::Vector v(1, 2, 3);
     std::cout << (m1 * v).x << " " << (m1 * v).y << " " << (m1 * v).z << std::endl;
-        
+
     return 0;
 }

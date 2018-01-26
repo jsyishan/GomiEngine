@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/math/GEVector.h"
+#include "../GEngine/math/GEVector.h"
 
 int main() {
     ge::Vector v(1.0, 2.0, 3.0);
