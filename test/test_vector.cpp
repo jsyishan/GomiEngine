@@ -18,5 +18,7 @@ int main() {
 
     std::cout << "[u v w] = " << ge::scalarTripleProduct(u, v, w) << std::endl;
 
+    std::cout << "normalize(u) = {" << (~u).x << ", " << (~u).y << ", " << (~u).z << "}" << std::endl;
+
     return 0;
 }

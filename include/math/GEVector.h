@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-#define TOL 0.0001  //tolerance of float
+#include "GEConstant.h"
 
 namespace ge {
 
@@ -92,14 +92,14 @@ namespace ge {
 
     inline void Vector::normalize() {
         float m = Vector::magnitude();
-        if (m <= TOL) m = 1.0f;
+        if (m <= FLOAT_TOL) m = 1.0f;
         x /= m;
         y /= m;
         z /= m;
 
-        if (std::fabs(x) < TOL) x = 0.0f;
-        if (std::fabs(y) < TOL) y = 0.0f;
-        if (std::fabs(z) < TOL) z = 0.0f;
+        if (std::fabs(x) < FLOAT_TOL) x = 0.0f;
+        if (std::fabs(y) < FLOAT_TOL) y = 0.0f;
+        if (std::fabs(z) < FLOAT_TOL) z = 0.0f;
     }
 
     inline void Vector::reverse() {
