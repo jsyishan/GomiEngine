@@ -27,7 +27,7 @@ int main() {
     print(m1.inverse());
     print(m1 + m2);
 
-    ge::Vector v(1, 2, 3);
+    ge::Vector3D v(1, 2, 3);
     std::cout << (m1 * v).x << " " << (m1 * v).y << " " << (m1 * v).z << std::endl;
 
     return 0;

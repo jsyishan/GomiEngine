@@ -22,124 +22,124 @@ namespace ge {
         Vector2D& operator/=(float s);
 
         Vector2D operator-();
-        Vector2D operator~(); //get a new Vector object which is normalized
+        Vector2D operator~(); //get a new Vector3D object which is normalized
 
         float magnitude();
         Vector2D& normalize();
         Vector2D& reverse();
     };
 
-    class Vector {
+    class Vector3D {
     public:
         float x;
         float y;
         float z;
 
-        Vector();
-        Vector(float i, float j, float k);
-        Vector(const Vector &v);
-        Vector(const Vector2D &v2);
-        Vector(const Vector2D &v2, float k);
-        Vector(float k, const Vector2D &v2);
+        Vector3D();
+        Vector3D(float i, float j, float k);
+        Vector3D(const Vector3D &v);
+        Vector3D(const Vector2D &v2);
+        Vector3D(const Vector2D &v2, float k);
+        Vector3D(float k, const Vector2D &v2);
 
-        Vector& operator+=(const Vector &v);
-        Vector& operator-=(const Vector &v);
-        Vector& operator*=(float s);
-        Vector& operator/=(float s);
+        Vector3D& operator+=(const Vector3D &v);
+        Vector3D& operator-=(const Vector3D &v);
+        Vector3D& operator*=(float s);
+        Vector3D& operator/=(float s);
 
-        Vector operator-();
-        Vector operator~(); //get a new Vector object which is normalized
+        Vector3D operator-();
+        Vector3D operator~(); //get a new Vector3D object which is normalized
 
         float magnitude();
-        Vector& normalize();
-        Vector& reverse();
+        Vector3D& normalize();
+        Vector3D& reverse();
     };
 
     /*
-    * Functions of Class Vector
+    * Functions of Class Vector3D
     *
     */
 
-    inline Vector::Vector() {
+    inline Vector3D::Vector3D() {
         x = 0.0f;
         y = 0.0f;
         z = 0.0f;
     }
 
-    inline Vector::Vector(float i, float j, float k) {
+    inline Vector3D::Vector3D(float i, float j, float k) {
         x = i;
         y = j;
         z = k;
     }
 
-    inline Vector::Vector(const Vector &v) {
+    inline Vector3D::Vector3D(const Vector3D &v) {
         x = v.x;
         y = v.y;
         z = v.z;
     }
 
-    inline Vector::Vector(const Vector2D &v2) {
+    inline Vector3D::Vector3D(const Vector2D &v2) {
         x = v2.x;
         y = v2.y;
         z = 0.0f;
     }
 
-    inline Vector::Vector(const Vector2D &v2, float k) {
+    inline Vector3D::Vector3D(const Vector2D &v2, float k) {
         x = v2.x;
         y = v2.y;
         z = k;
     }
 
-    inline Vector::Vector(float k, const Vector2D &v2) {
+    inline Vector3D::Vector3D(float k, const Vector2D &v2) {
         x = v2.x;
         y = v2.y;
         z = k;
     }
 
-    inline Vector& Vector::operator+=(const Vector &v) {
+    inline Vector3D& Vector3D::operator+=(const Vector3D &v) {
         x += v.x;
         y += v.y;
         z += v.z;
         return *this;
     }
 
-    inline Vector& Vector::operator-=(const Vector &v) {
+    inline Vector3D& Vector3D::operator-=(const Vector3D &v) {
         x -= v.x;
         y -= v.y;
         z -= v.z;
         return *this;
     }
 
-    inline Vector& Vector::operator*=(float s) {
+    inline Vector3D& Vector3D::operator*=(float s) {
         x *= s;
         y *= s;
         z *= s;
         return *this;
     }
 
-    inline Vector& Vector::operator/=(float s) {
+    inline Vector3D& Vector3D::operator/=(float s) {
         x /= s;
         y /= s;
         z /= s;
         return *this;
     }
 
-    inline Vector Vector::operator-() {
-        return Vector(-x, -y, -z);
+    inline Vector3D Vector3D::operator-() {
+        return Vector3D(-x, -y, -z);
     }
 
-    inline Vector Vector::operator~() {
-        Vector v(x, y, z);
+    inline Vector3D Vector3D::operator~() {
+        Vector3D v(x, y, z);
         v.normalize();
         return v;
     }
 
-    inline float Vector::magnitude() {
+    inline float Vector3D::magnitude() {
         return (float) std::sqrt(x * x + y * y + z * z);
     }
 
-    inline Vector& Vector::normalize() {
-        float m = Vector::magnitude();
+    inline Vector3D& Vector3D::normalize() {
+        float m = Vector3D::magnitude();
         if (m <= FLOAT_TOL) m = 1.0f;
         x /= m;
         y /= m;
@@ -152,7 +152,7 @@ namespace ge {
         return *this;
     }
 
-    inline Vector& Vector::reverse() {
+    inline Vector3D& Vector3D::reverse() {
         x = -x;
         y = -y;
         z = -z;
@@ -237,24 +237,24 @@ namespace ge {
         return *this;
     }
 
-    inline Vector operator+(const Vector &u, const Vector &v) {
-        return Vector(u.x + v.x, u.y + v.y, u.z + v.z);
+    inline Vector3D operator+(const Vector3D &u, const Vector3D &v) {
+        return Vector3D(u.x + v.x, u.y + v.y, u.z + v.z);
     }
     
     inline Vector2D operator+(const Vector2D &u, const Vector2D &v) {
         return Vector2D(u.x + v.x, u.y + v.y);
     }
 
-    inline Vector operator-(const Vector &u, const Vector &v) {
-        return Vector(u.x - v.x, u.y - v.y, u.z - v.z);
+    inline Vector3D operator-(const Vector3D &u, const Vector3D &v) {
+        return Vector3D(u.x - v.x, u.y - v.y, u.z - v.z);
     }
 
     inline Vector2D operator-(const Vector2D &u, const Vector2D &v) {
         return Vector2D(u.x - v.x, u.y - v.y);
     }
 
-    inline Vector operator*(const Vector &v, float s) {
-        return Vector(v.x * s, v.y * s, v.z * s);
+    inline Vector3D operator*(const Vector3D &v, float s) {
+        return Vector3D(v.x * s, v.y * s, v.z * s);
     }
 
     inline Vector2D operator*(const Vector2D &v, float s) {
@@ -265,7 +265,7 @@ namespace ge {
         return Vector2D(v.x * s, v.y * s);
     }
 
-    inline float operator*(const Vector &u, const Vector &v) {
+    inline float operator*(const Vector3D &u, const Vector3D &v) {
         return (u.x * v.x + u.y * v.y + u.z * v.z);
     }
 
@@ -274,24 +274,24 @@ namespace ge {
     }
 
     //Cross Product
-    inline Vector operator^(const Vector &u, const Vector &v) {
-        return Vector(
+    inline Vector3D operator^(const Vector3D &u, const Vector3D &v) {
+        return Vector3D(
             u.y * v.z - u.z / v.y,
             -u.x * v.z + u.z * v.x,
             u.x * v.y - v.x * u.y
         );
     }
 
-    inline Vector operator^(const Vector2D &v, float s) {
+    inline Vector3D operator^(const Vector2D &v, float s) {
         return Vector2D(-s * v.y, s * v.x);
     }
 
-    inline Vector operator^(float s, const Vector2D &v) {
+    inline Vector3D operator^(float s, const Vector2D &v) {
         return Vector2D(-s * v.y, s * v.x);
     }
 
-    inline Vector operator/(const Vector &v, float s) {
-        return Vector(v.x / s, v.y / s, v.z / s);
+    inline Vector3D operator/(const Vector3D &v, float s) {
+        return Vector3D(v.x / s, v.y / s, v.z / s);
     }
 
     inline Vector2D operator/(const Vector2D &v, float s) {
@@ -299,7 +299,7 @@ namespace ge {
     }
 
     //Scalar Triple Product
-    inline float scalarTripleProduct(const Vector &u, const Vector &v, const Vector &w) {
+    inline float scalarTripleProduct(const Vector3D &u, const Vector3D &v, const Vector3D &w) {
         return 
             u.x * (v.y * w.z - v.z * w.y) +
             u.y * (-v.x * w.z + v.z * w.x) +

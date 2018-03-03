@@ -52,7 +52,6 @@ namespace ge {
         gettimeofday(&tv, NULL);
         unix_timer_sec = tv.tv_sec;
         unix_timer_usec = tv.tv_usec;
-
     }
 
     float GETimer::getCurrentTime() const {

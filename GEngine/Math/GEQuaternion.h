@@ -10,12 +10,12 @@ namespace ge {
     class Quaternion {
     public:
         float n;
-        Vector v;
+        Vector3D v;
 
         Quaternion();
         Quaternion(float e0, float e1, float e2, float e3);
-        Quaternion(float _n, const Vector& _v);
-        Quaternion(const Vector& _v, float _n);
+        Quaternion(float _n, const Vector3D& _v);
+        Quaternion(const Vector3D& _v, float _n);
 
         Quaternion& operator+=(const Quaternion& q);
         Quaternion& operator-=(const Quaternion& q);
@@ -24,17 +24,18 @@ namespace ge {
         Quaternion operator~() const;
 
         float magnitude();
-        Vector getVector();
+        Vector3D getVector();
         float getScalar();
     };
 
     float getAngle(const Quaternion& q);
-    Vector getAxis(const Quaternion& q);
+    Vector3D getAxis(const Quaternion& q);
     Quaternion rotate(const Quaternion& q1, const Quaternion& q2);
-    Vector rotate(const Quaternion& q, const Vector& v);
-    Vector rotate(const Vector& v, const Quaternion& q);
+    Vector3D rotate(const Quaternion& q, const Vector3D& v);
+    Vector3D rotate(const Vector3D& v, const Quaternion& q);
+    Quaternion constructFromEulerAngles(const Vector3D& v);
     Quaternion constructFromEulerAngles(float x, float y, float z);
-    Vector getEulerAngles(const Quaternion& q);
+    Vector3D getEulerAngles(const Quaternion& q);
 
     inline Quaternion::Quaternion() {
         n = 0.0f;
@@ -50,14 +51,14 @@ namespace ge {
         v.z = e3;
     }
 
-    inline Quaternion::Quaternion(float _n, const Vector& _v) {
+    inline Quaternion::Quaternion(float _n, const Vector3D& _v) {
         n = _n;
         v.x = _v.x;
         v.y = _v.y;
         v.z = _v.z;
     }
 
-    inline Quaternion::Quaternion(const Vector& _v, float _n) {
+    inline Quaternion::Quaternion(const Vector3D& _v, float _n) {
         n = _n;
         v.x = _v.x;
         v.y = _v.y;
@@ -106,7 +107,7 @@ namespace ge {
         return (float) std::sqrt(n * n + v.x * v.x + v.y * v.y + v.z * v.z);
     }
 
-    inline Vector Quaternion::getVector() {
+    inline Vector3D Quaternion::getVector() {
         return v;
     }
 
@@ -124,7 +125,7 @@ namespace ge {
 
     inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2) {
         float n = q1.n * q2.n - q1.v * q2.v;
-        Vector v = q1.n * q2.v + q2.n * q1.v + q1.v ^ q2.v;
+        Vector3D v = q1.n * q2.v + q2.n * q1.v + q1.v ^ q2.v;
         return Quaternion(n, v.x, v.y, v.z);
     }
 
@@ -136,11 +137,11 @@ namespace ge {
         return Quaternion(q.n * s, q.v.x * s, q.v.y * s, q.v.z * s);
     }
 
-    inline Quaternion operator*(const Quaternion& q, const Vector& v) {
+    inline Quaternion operator*(const Quaternion& q, const Vector3D& v) {
         return (q * Quaternion(0.0f, v.x, v.y, v.z));
     }
 
-    inline Quaternion operator*(const Vector& v, const Quaternion& q) {
+    inline Quaternion operator*(const Vector3D& v, const Quaternion& q) {
         return (q * Quaternion(0.0f, v.x, v.y, v.z));
     }
 

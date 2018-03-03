@@ -152,16 +152,16 @@ namespace ge {
         );
     }
 
-    inline Vector operator*(const Matrix33& m, const Vector& v) {
-        return Vector(
+    inline Vector3D operator*(const Matrix33& m, const Vector3D& v) {
+        return Vector3D(
             m.e11 * v.x + m.e12 * v.y + m.e13 * v.z,
             m.e21 * v.x + m.e22 * v.y + m.e23 * v.z,
             m.e31 * v.x + m.e32 * v.y + m.e33 * v.z
         );
     }
 
-    inline Vector operator*(const Vector& v, const Matrix33& m) {
-        return Vector(
+    inline Vector3D operator*(const Vector3D& v, const Matrix33& m) {
+        return Vector3D(
             m.e11 * v.x + m.e12 * v.y + m.e13 * v.z,
             m.e21 * v.x + m.e22 * v.y + m.e23 * v.z,
             m.e31 * v.x + m.e32 * v.y + m.e33 * v.z

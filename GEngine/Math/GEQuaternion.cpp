@@ -12,7 +12,7 @@ namespace ge {
         return 2 * std::acos(q.n);
     }
 
-    Vector getAxis(const Quaternion& q) {
+    Vector3D getAxis(const Quaternion& q) {
         Quaternion p = q;
         return p.getVector().normalize();
     }
@@ -21,12 +21,12 @@ namespace ge {
         return q1 * q2 * (~q1);
     }
 
-    Vector rotate(const Quaternion& q, const Vector& v) {
+    Vector3D rotate(const Quaternion& q, const Vector3D& v) {
         Quaternion p = q * v * (~q);
         return p.getVector();
     }
 
-    Vector rotate(const Vector& v, const Quaternion& q) {
+    Vector3D rotate(const Vector3D& v, const Quaternion& q) {
         Quaternion p = q * v * (~q);
         return p.getVector();
     }
@@ -51,8 +51,12 @@ namespace ge {
         return q;
     }
 
-    Vector getEulerAngles(const Quaternion& q) {
-        Vector v;
+    Quaternion constructFromEulerAngles(const Vector3D& v) {
+        return constructFromEulerAngles(v.x, v.y, v.z);
+    }
+
+    Vector3D getEulerAngles(const Quaternion& q) {
+        Vector3D v;
         float r11, r12, r13, r21, r31, r32, r33;
         float tmp;
 
