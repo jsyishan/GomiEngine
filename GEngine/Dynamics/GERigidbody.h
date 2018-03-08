@@ -55,7 +55,7 @@ namespace ge {
         void setForces(const Vector3D& f);
         void setSpeed(float s);
 
-        void setInertia(const Matrix33& m);
+        void setInertia(const Matrix33& i);
         void setOrientation(const Quaternion& q);
         void setTransform(const Transform& trans);
 
@@ -105,8 +105,118 @@ namespace ge {
         mass = speed = 0.0f;
         inertia = inertiaInverse = Matrix33::m33_zero;
         transform = Transform();
+        type = rb_static;
+        isActive = true;
+    }
+
+    Rigidbody::~Rigidbody() {
+
+    }
+
+    //getter functions
+    //...
+    inline const Vector3D& Rigidbody::getAngularDrag() const {
+        return angularDrag;
+    }
+
+    inline const Vector3D& Rigidbody::getAngularVelocity() const {
+        return angularVelocity;
+    }
+
+    inline const Vector3D& Rigidbody::getLinearVelocity() const {
+        return linearVelocity;
+    }
+
+    inline const Vector3D& Rigidbody::getLinearVelocityLocal() const {
+        return linearVelocityLocal;
+    }
+
+    inline const Vector3D& Rigidbody::getCenterOfMass() const {
+        return centerOfMass;
+    }
+
+    inline const Vector3D& Rigidbody::getEuler() const {
+        return eulerAngles;
+    }
+
+    inline const Vector3D& Rigidbody::getForces() const {
+        return forces;
+    }
+
+    inline const Vector3D& Rigidbody::getMoments() const {
+        return moments;
+    }
+
+    inline float Rigidbody::getMass() const {
+        return mass;
+    }
+
+    inline float Rigidbody::getSpeed() const {
+        return speed;
+    }
+
+    inline const Matrix33& Rigidbody::getInertia() const {
+        return inertia;
+    }
+
+    inline const Quaternion& Rigidbody::getOrientation() const {
+        return orientation;
+    }
+
+    inline const Transform& Rigidbody::getTransform() const {
+        return transform;
+    }
+
+    inline rigidbodyType Rigidbody::getType() const {
+        return type;
+    }
+
+    inline bool Rigidbody::isAwake() const {
+        return isActive;
+    }
+
+    //setter functions
+    //...
+    inline void Rigidbody::setAngularDrag(const Vector3D& drag) {
+        angularDrag = drag;
+    }
+    inline void Rigidbody::setAngularVelocity(const Vector3D& velocity) {
+        angularVelocity = velocity;
+    }
+
+    inline void Rigidbody::setLinearVelocity(const Vector3D& velocity) {
+        linearVelocity = velocity;
+        //set local velocity
+        //...
+    }
+
+    inline void Rigidbody::setForces(const Vector3D& f) {
+        forces = f;
+    }
+
+    inline void Rigidbody::setSpeed(float s) {
+        speed = s;
+    }
+
+    inline void Rigidbody::setInertia(const Matrix33& i) {
+        inertia = i;
+    }
+
+    inline void Rigidbody::setOrientation(const Quaternion& q) {
+        orientation = q;
+    }
+
+    inline void Rigidbody::setTransform(const Transform& trans) {
+        transform = trans;
+    }
+
+    inline void Rigidbody::setType(rigidbodyType t) {
+        type = t;
+    }
+
+    inline void Rigidbody::setAwake(bool flag) {
+        isActive = flag;
     }
 }
-
 
 #endif

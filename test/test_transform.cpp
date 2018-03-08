@@ -7,6 +7,6 @@ int main() {
     ge::Transform t2, t3;
     t3 = t2 = t1;
 
-    std::cout << t1.position.x << "   " << t3.position.y << std::endl;
+    std::cout << t1.position.x << "   " << t3.position.y << "\t" << t3.scale.x << std::endl;
     return 0;
 }
