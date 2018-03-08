@@ -1,9 +1,11 @@
 #include <iostream>
-#include "../GEngine/math/GEVector.h"
+#include "../GEngine/Math/GEVector.h"
 
 int main() {
     ge::Vector3D v(1.0, 2.0, 3.0);
     ge::Vector3D u(2.0, 5.0, -1.5);
+
+    std::cout << ge::Vector3D::vec3_zero.x << std::endl;
     
     std::cout << "v = {" << v.x << ", " << v.y << ", " << v.z << "}" << std::endl;
     std::cout << "u = {" << u.x << ", " << u.y << ", " << u.z << "}" << std::endl;

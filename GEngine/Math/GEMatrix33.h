@@ -8,6 +8,8 @@ namespace ge {
 
     class Matrix33 {
     public:
+        static Matrix33 m33_zero;
+
         float e11, e12, e13,
               e21, e22, e23,
               e31, e32, e33;
@@ -27,6 +29,9 @@ namespace ge {
         Matrix33 transpose();
         Matrix33 inverse();
     };
+
+    //const
+    Matrix33 Matrix33::m33_zero = Matrix33(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
     inline Matrix33::Matrix33() {
         e11 = e12 = e13 = 0.0f;

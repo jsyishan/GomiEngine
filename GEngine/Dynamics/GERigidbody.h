@@ -95,8 +95,16 @@ namespace ge {
     };
 
     Rigidbody::Rigidbody() {
-        angularDrag = Vector3D(0.0f, 0.0f, 0.0f);
-        angularVelocity = Vector3D()
+        //all Vector attributes should be set to a zero Vector
+        angularDrag = angularVelocity = Vector3D::vec3_zero;
+        linearVelocity = linearVelocityLocal = linearVelocityDrag = Vector3D::vec3_zero;
+        centerOfMass = eulerAngles = forces = moments = Vector3D::vec3_zero;
+
+        //other else
+        //...
+        mass = speed = 0.0f;
+        inertia = inertiaInverse = Matrix33::m33_zero;
+        transform = Transform();
     }
 }
 

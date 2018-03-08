@@ -13,6 +13,7 @@ namespace ge {
         Vector3D scale;
 
         Transform();
+        Transform(const Transform& trans);
         Transform(const Vector3D& pos);
         Transform(const Vector3D& pos, const Vector3D& rot);
         Transform(const Vector3D& pos, const Quaternion& rot);
@@ -33,33 +34,32 @@ namespace ge {
     };
 
     inline Transform::Transform() {
-        position.x = 0.0f;
-        position.y = 0.0f;
-        position.z = 0.0f;
+        position = rotation = Vector3D::vec3_zero;
+        scale = Vector3D(1.0f, 1.0f, 1.0f);
+    }
+
+    inline Transform::Transform(const Transform& trans) {
+        position = trans.position;
+        rotation = trans.rotation;
+        scale = trans.scale;
     }
 
     inline Transform::Transform(const Vector3D& pos) {
-        position.x = pos.x;
-        position.y = pos.y;
-        position.z = pos.z;
+        position = pos;
+        rotation = Vector3D::vec3_zero;
+        scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
     inline Transform::Transform(const Vector3D& pos, const Vector3D& rot) {
-        position.x = pos.x;
-        position.y = pos.y;
-        position.z = pos.z;
-
-        rotation.x = rot.x;
-        rotation.y = rot.y;
-        rotation.z = rot.z;
+        position = pos;
+        rotation = rot;
+        scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
     inline Transform::Transform(const Vector3D& pos, const Quaternion& rot) {
-        position.x = pos.x;
-        position.y = pos.y;
-        position.z = pos.z;
-
+        position = pos;
         rotation = getEulerAngles(rot);
+        scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
     inline void Transform::rotate(const Vector3D& rot) {
