@@ -2,17 +2,22 @@
 #define GEMODEL_H
 
 #include "../Math/GEVector.h"
+#include "../Basis/GESOA.h"
 
 namespace ge {
     class Model {
     public:
-        float fMass;
-        ge::Vector vPosition;
-        ge::Vector vVelocity;
-        ge::Vector vForces;
+        enum type {
+            model_type_edge = 0,
+            model_type_circle = 1,
+            model_type_polygon = 2
+        };
 
         Model();
-        virtual void calcLoads() = 0;
+        virtual ~Model() {}
+
+        type getType() const;
+        virtual Model* duplicate(SmallObjectAllocator* allocator) const = 0;
         
     };
 }
