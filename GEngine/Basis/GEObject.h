@@ -13,7 +13,7 @@ namespace ge {
     public:
         Object();
         Object(std::string n):name(n) {}
-        virtual ~Object() {}
+        virtual ~Object();
 
         bool operator!() const;
         bool operator==(const Object& obj);
@@ -32,7 +32,8 @@ namespace ge {
         //...
         //Instantiate on the specific position with the specific rotation
         static Object* instantiate(const Object& obj, const Vector3D& pos, const Quaternion& rot);
-    private:
+        
+    protected:
         std::string name;
         std::string tag;
         void* gameObject;

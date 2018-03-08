@@ -4,6 +4,7 @@
 #include <cassert>
 
 namespace ge {
+    
     int SmallObjectAllocator::blockSizes[soa_block_size] = {
         8,
         16,

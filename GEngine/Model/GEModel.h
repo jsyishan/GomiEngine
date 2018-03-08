@@ -3,9 +3,10 @@
 
 #include "../Math/GEVector.h"
 #include "../Basis/GESOA.h"
+#include "../Basis/GEObject.h"
 
 namespace ge {
-    class Model {
+    class Model : public Object{
     public:
         enum type {
             model_type_edge = 0,
@@ -14,7 +15,7 @@ namespace ge {
         };
 
         Model();
-        virtual ~Model() {}
+        virtual ~Model() = 0;
 
         type getType() const;
         virtual Model* duplicate(SmallObjectAllocator* allocator) const = 0;

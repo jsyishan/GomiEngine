@@ -2,6 +2,10 @@
 
 namespace ge {
 
+    Object::~Object() {
+        gameObject = nullptr;
+    }
+
     void Object::destroy(Object* obj) {
 
     }
@@ -15,6 +19,6 @@ namespace ge {
     }
 
     Object* Object::instantiate(const Object& obj, const Vector3D& pos, const Quaternion& rot) {
-        
+
     }
 }

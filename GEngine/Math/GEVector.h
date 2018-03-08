@@ -9,6 +9,7 @@ namespace ge {
 
     class Vector2D {
     public:
+        static Vector2D vec2_zero;
         float x;
         float y;
 
@@ -31,6 +32,7 @@ namespace ge {
 
     class Vector3D {
     public:
+        static Vector3D vec3_zero;
         float x;
         float y;
         float z;
@@ -54,6 +56,10 @@ namespace ge {
         Vector3D& normalize();
         Vector3D& reverse();
     };
+
+    //const init
+    Vector2D Vector2D::vec2_zero = Vector2D(0.0f, 0.0f);
+    Vector3D Vector3D::vec3_zero = Vector3D(0.0f, 0.0f, 0.0f);
 
     /*
     * Functions of Class Vector3D
@@ -237,6 +243,7 @@ namespace ge {
         return *this;
     }
 
+    //plus operator
     inline Vector3D operator+(const Vector3D &u, const Vector3D &v) {
         return Vector3D(u.x + v.x, u.y + v.y, u.z + v.z);
     }
@@ -245,6 +252,7 @@ namespace ge {
         return Vector2D(u.x + v.x, u.y + v.y);
     }
 
+    //minus operator
     inline Vector3D operator-(const Vector3D &u, const Vector3D &v) {
         return Vector3D(u.x - v.x, u.y - v.y, u.z - v.z);
     }
@@ -253,7 +261,12 @@ namespace ge {
         return Vector2D(u.x - v.x, u.y - v.y);
     }
 
+    //multiply operator between Vector and float
     inline Vector3D operator*(const Vector3D &v, float s) {
+        return Vector3D(v.x * s, v.y * s, v.z * s);
+    }
+
+    inline Vector3D operator*(float s, const Vector3D &v) {
         return Vector3D(v.x * s, v.y * s, v.z * s);
     }
 
@@ -265,6 +278,7 @@ namespace ge {
         return Vector2D(v.x * s, v.y * s);
     }
 
+    //multiply operator between two Vector
     inline float operator*(const Vector3D &u, const Vector3D &v) {
         return (u.x * v.x + u.y * v.y + u.z * v.z);
     }

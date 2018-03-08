@@ -5,6 +5,7 @@
 #include "../Math/GEVector.h"
 #include "../Math/GEQuaternion.h"
 #include "../Basis/GEObject.h"
+#include "../Math/GETransform.h"
 
 namespace ge {
 
@@ -19,13 +20,57 @@ namespace ge {
 
     class Rigidbody : public Object{
     public:
+        Rigidbody();
+        ~Rigidbody() override;
+
+        //getter functions
+        const Vector3D& getAngularDrag() const;
+        const Vector3D& getAngularVelocity() const;
+
+        const Vector3D& getLinearVelocity() const;
+        const Vector3D& getLinearVelocityLocal() const;
+
+        const Vector3D& getCenterOfMass() const;
+        const Vector3D& getEuler() const;
+
+        const Vector3D& getForces() const;
+        const Vector3D& getMoments() const;
+
+        float getMass() const;
+        float getSpeed() const;
+
+        const Matrix33& getInertia() const;
+        const Quaternion& getOrientation() const;
+        const Transform& getTransform() const;
+
+        rigidbodyType getType() const;
+        bool isAwake() const;
+
+        //setter functions
+        void setAngularDrag(const Vector3D& drag);
+        void setAngularVelocity(const Vector3D& velocity);
+
+        void setLinearVelocity(const Vector3D& velocity);
+
+        void setForces(const Vector3D& f);
+        void setSpeed(float s);
+
+        void setInertia(const Matrix33& m);
+        void setOrientation(const Quaternion& q);
+        void setTransform(const Transform& trans);
+
+        void setType(rigidbodyType t);
+        void setAwake(bool flag);
 
     private:
         Vector3D angularDrag;
         Vector3D angularVelocity;
 
+        //linear velocity in world coordinates
         Vector3D linearVelocity;
-        Vector3D linearVelocityBody;
+
+        //linear velocity in local coordinates
+        Vector3D linearVelocityLocal;
         Vector3D linearVelocityDrag;
 
         Vector3D centerOfMass;
@@ -43,10 +88,16 @@ namespace ge {
         Matrix33 inertia;
         Matrix33 inertiaInverse;
         Quaternion orientation;
+        Transform transform;
 
         rigidbodyType type;
         bool isActive;
     };
+
+    Rigidbody::Rigidbody() {
+        angularDrag = Vector3D(0.0f, 0.0f, 0.0f);
+        angularVelocity = Vector3D()
+    }
 }
 
 
