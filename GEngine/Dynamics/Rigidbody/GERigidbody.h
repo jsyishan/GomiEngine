@@ -1,11 +1,11 @@
 #ifndef GERIGIDBODY_H
 #define GERIGIDBODY_H
 
-#include "../Math/GEMatrix33.h"
-#include "../Math/GEVector.h"
-#include "../Math/GEQuaternion.h"
-#include "../Basis/GEObject.h"
-#include "../Math/GETransform.h"
+#include "../../Math/GEMatrix33.h"
+#include "../../Math/GEVector.h"
+#include "../../Math/GEQuaternion.h"
+#include "../../Basis/GEObject.h"
+#include "../../Math/GETransform.h"
 
 namespace ge {
 
