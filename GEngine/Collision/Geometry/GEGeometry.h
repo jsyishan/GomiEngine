@@ -2,6 +2,8 @@
 #define GEGEOMETRY_H
 
 #include "GEAabb.h"
+#include "GERaycastHit.h"
+#include "../../Math/GETransform.h"
 
 namespace ge {
     class Geometry {
@@ -17,6 +19,9 @@ namespace ge {
         };
 
         virtual ~Geometry() = 0;
+        virtual bool rayCast(const Vector3D& begin, const Vector3D& end, const Transform& trans, RaycastHit* hit) const;
+
+        Type getType() const;
 
     private:
         Type type;
@@ -24,8 +29,11 @@ namespace ge {
 
         Geometry(Type type);
         virtual void updateMass() = 0;
-        virtual void computeAabb()
-
+        virtual void computeAabb(Aabb* aabb, const Transform& trans) const = 0;
     };
+
+    inline Geometry::Type Geometry::getType() const {
+        return type;
+    }
 }
 #endif // !GEGEOMETRY_H
