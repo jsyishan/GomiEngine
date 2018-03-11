@@ -3,9 +3,10 @@
 
 #include "GEConstant.h"
 #include "GEVector.h"
-#include "GEQuaternion.h"
 
 namespace ge {
+
+    class Quaternion;
 
     class Matrix33 {
     public:
@@ -34,17 +35,6 @@ namespace ge {
         Matrix33 transpose();
         Matrix33 inverse();
     };
-
-    //const
-    Matrix33 Matrix33::m33_zero = Matrix33(
-        0.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 0.0f);
-
-    Matrix33 Matrix33::m33_id = Matrix33(
-        1.0f, 0.0f, 0.0f,
-        0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 1.0f);
 
     inline Matrix33::Matrix33() {
         e11 = e12 = e13 = 0.0f;

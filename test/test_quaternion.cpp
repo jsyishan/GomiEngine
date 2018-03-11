@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../GEngine/math/GEQuaternion.h"
+#include "../GEngine/Math/GEQuaternion.h"
 
 int main() {
     ge::Quaternion q1 (1, 2, 3, 4);

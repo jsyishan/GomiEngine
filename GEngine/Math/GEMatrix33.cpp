@@ -1,5 +1,7 @@
-#include "GEMatrix33.h"
 #include <cmath>
+
+#include "GEMatrix33.h"
+#include "GEQuaternion.h"
 
 namespace ge {
 

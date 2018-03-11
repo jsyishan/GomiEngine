@@ -51,7 +51,7 @@ namespace ge {
         return type;
     }
 
-    inline Geometry::getVolume() const {
+    inline float Geometry::getVolume() const {
         return volume;
     }
 

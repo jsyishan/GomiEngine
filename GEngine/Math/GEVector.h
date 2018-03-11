@@ -57,10 +57,6 @@ namespace ge {
         Vector3D& reverse();
     };
 
-    //const init
-    Vector2D Vector2D::vec2_zero = Vector2D(0.0f, 0.0f);
-    Vector3D Vector3D::vec3_zero = Vector3D(0.0f, 0.0f, 0.0f);
-
     /*
     * Functions of Class Vector3D
     *

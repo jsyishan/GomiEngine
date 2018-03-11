@@ -37,7 +37,7 @@ namespace ge {
     }
 
     template <typename T>
-    inline t tMax(T a, T b, T c) {
+    inline T tMax(T a, T b, T c) {
         return a > b ? (a > c ? a : c) : (b > c ? b : c);
     }
 

@@ -2,11 +2,11 @@
 #define GEQUATERNION_H
 
 #include <cmath>
-
 #include "GEVector.h"
-#include "GEMatrix33.h"
 
 namespace ge {
+
+    class Matrix33;
 
     class Quaternion {
     public:
@@ -41,9 +41,6 @@ namespace ge {
     Quaternion constructFromEulerAngles(const Vector3D& v);
     Quaternion constructFromEulerAngles(float x, float y, float z);
     Vector3D getEulerAngles(const Quaternion& q);
-
-    //const
-    Quaternion Quaternion::quat_zero = Quaternion(0.0f, Vector3D::vec3_zero);
 
     inline Quaternion::Quaternion() {
         n = 0.0f;
@@ -158,5 +155,4 @@ namespace ge {
     }
 
 }
-
 #endif
