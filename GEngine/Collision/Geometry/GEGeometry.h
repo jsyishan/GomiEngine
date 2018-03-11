@@ -23,6 +23,7 @@ namespace ge {
         virtual bool rayCast(const Vector3D& begin, const Vector3D& end, const Transform& trans, RaycastHit* hit) const;
 
         Type getType() const;
+        float getVolume() const;
 
         float getGjkMargin() const;
         void setGjkMargin(float margin);
@@ -48,6 +49,10 @@ namespace ge {
 
     inline Geometry::Type Geometry::getType() const {
         return type;
+    }
+
+    inline Geometry::getVolume() const {
+        return volume;
     }
 
     inline float Geometry::getGjkMargin() const {

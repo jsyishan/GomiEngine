@@ -2,6 +2,10 @@
 
 namespace ge {
     bool Geometry::rayCast(const Vector3D& begin, const Vector3D& end, const Transform& trans, RaycastHit* hit) const {
+        if (isUseGjkRayCast) {
+            //return ...
+        }
+
         //local Vector of begin and end
         Vector3D loc_begin, loc_end;
 
