@@ -56,7 +56,7 @@ namespace ge {
     }
 
     inline Aabb Aabb::getIntersection(const Aabb& other) const{
-        return Aabb(max(other.max_point, max_point), min(other.min_point, min_point));
+        return Aabb(tMax(other.max_point, max_point), tMin(other.min_point, min_point));
     }
 
     inline void Aabb::setMin(const Vector3D& min) {
@@ -68,8 +68,8 @@ namespace ge {
     }
 
     inline void Aabb::combine(const Aabb& other) {
-        min_point = min(min_point, other.min_point);
-        max_point = max(max_point, other.max_point);
+        min_point = tMin(min_point, other.min_point);
+        max_point = tMax(max_point, other.max_point);
     }
 
     //returns whether *this and other intersect

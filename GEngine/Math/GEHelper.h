@@ -14,21 +14,39 @@ namespace ge {
     }
 
     template <typename T>
-    inline T min(T a,T b) {
+    inline T tMin(T a,T b) {
         return a < b ? a: b;
     }
 
-    inline Vector3D min(const Vector3D& a, const Vector3D& b) {
-        return Vector3D(min(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
+    template <typename T>
+    inline T tMin(T a, T b, T c) {
+        return a < b ? (a < c ? a : c) : (b < c ? b : c);
+    }
+
+    inline Vector3D tMin(const Vector3D& a, const Vector3D& b) {
+        return Vector3D(tMin(a.x, b.x), tMin(a.y, b.y), tMin(a.z, b.z));
+    }
+
+    inline Vector3D tMin(const Vector3D& a, const Vector3D& b, const Vector3D& c) {
+        return Vector3D(tMin(a.x, b.x, c.x), tMin(a.y, b.y, c.y), tMin(a.z, b.z, c.z));
     }
 
     template <typename T>
-    inline T max(T a, T b) {
-        return a < b ? b : a;
+    inline T tMax(T a, T b) {
+        return a > b ? a : b;
     }
 
-    inline Vector3D max(const Vector3D& a, const Vector3D& b) {
-        return Vector3D(max(a.x, b.x), min(a.y, b.y), min(a.z, b.z));
+    template <typename T>
+    inline t tMax(T a, T b, T c) {
+        return a > b ? (a > c ? a : c) : (b > c ? b : c);
+    }
+
+    inline Vector3D tMax(const Vector3D& a, const Vector3D& b) {
+        return Vector3D(tMax(a.x, b.x), tMax(a.y, b.y), tMax(a.z, b.z));
+    }
+
+    inline Vector3D tMax(const Vector3D& a, const Vector3D& b, const Vector3D& c) {
+        return Vector3D(tMax(a.x, b.x, c.x), tMax(a.y, b.y, c.y), tMax(a.z, b.z, c.z));
     }
 }
 

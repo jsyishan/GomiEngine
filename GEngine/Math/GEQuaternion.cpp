@@ -8,6 +8,45 @@
 
 namespace ge {
 
+    Quaternion::Quaternion(const Matrix33& m) {
+        Quaternion q;
+        float t = m.e11 + m.e22 + m.e33;
+        float s;
+        if (t > 0) {
+            s = std::sqrt(t + 1);
+            q.n = 0.5f * s;
+            s = 0.5f / s;
+            q.v.x = (m.e32 - m.e23) * s;
+            q.v.y = (m.e13 - m.e31) * s;
+            q.v.z = (m.e21 - m.e12) * s;
+        } else {
+            float max = tMax(m.e11, m.e22, m.e33);
+            
+            if (std::fabs(max - m.e11) < FLOAT_TOL) {
+                s = std::sqrt(m.e11 - m.e22 - m.e33 + 1);
+                q.v.x = 0.5f * s;
+                s = 0.5f / s;
+                q.v.y = (m.e12 + m.e21) * s;
+                q.v.z = (m.e13 + m.e31) * s;
+                q.n = (m.e32 - m.e23) * s;
+            } else if (std::fabs(max - m.e22) < FLOAT_TOL) {
+                s = std::sqrt(m.e22 - m.e11 - m.e33 + 1);
+                q.v.y = 0.5f * s;
+                s = 0.5f / s;
+                q.v.x = (m.e12 + m.e21) * s;
+                q.v.z = (m.e23 + m.e32) * s;
+                q.n = (m.e13 + m.e31) * s;
+            } else {
+                s = std::sqrt(m.e33 - m.e22 - m.e11 + 1);
+                q.v.z = 0.5f * s;
+                s = 0.5f / s;
+                q.v.x = (m.e13 + m.e31) * s;
+                q.v.y = (m.e23 + m.e32) * s;
+                q.n = (m.e21 + m.e12) * s;
+            }
+        }
+    }
+
     float getAngle(const Quaternion& q) {
         return 2 * std::acos(q.n);
     }

@@ -4,6 +4,7 @@
 #include "GEAabb.h"
 #include "GERaycastHit.h"
 #include "../../Math/GETransform.h"
+#include "../../Basis/GESettings.h"
 
 namespace ge {
     class Geometry {
@@ -23,17 +24,43 @@ namespace ge {
 
         Type getType() const;
 
-    private:
+        float getGjkMargin() const;
+        void setGjkMargin(float margin);
+
+    protected:
         Type type;
         float volume;
+        bool isUseGjkRayCast;
+        float gjkMargin;
 
         Geometry(Type type);
         virtual void updateMass() = 0;
         virtual void computeAabb(Aabb* aabb, const Transform& trans) const = 0;
+        virtual bool rayCast(const Vector3D& begin, const Vector3D& end, RaycastHit* hit) const;
     };
+
+    inline Geometry::Geometry(Type t) {
+        type = t;
+        volume = 0.0f;
+        isUseGjkRayCast = false;
+        gjkMargin = gjk_margin;
+    }
 
     inline Geometry::Type Geometry::getType() const {
         return type;
+    }
+
+    inline float Geometry::getGjkMargin() const {
+        return gjkMargin;
+    }
+
+    inline void Geometry::setGjkMargin(float margin) {
+        if (margin < 0.0f) gjkMargin = 0.0f;
+        else gjkMargin = margin;
+    }
+
+    inline bool Geometry::rayCast(const Vector3D& begin, const Vector3D& end, RaycastHit* hit) const {
+        return false;
     }
 }
 #endif // !GEGEOMETRY_H

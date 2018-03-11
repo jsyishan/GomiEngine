@@ -2,6 +2,7 @@
 #define GETRANSFORM_H
 
 #include "GEVector.h"
+#include "GEMatrix33.h"
 #include "GEQuaternion.h"
 
 namespace ge {
@@ -9,21 +10,25 @@ namespace ge {
     class Transform {
     public:
         Vector3D position;
-        Vector3D rotation;
+        Matrix33 rotation;
         Vector3D scale;
 
         Transform();
         Transform(const Transform& trans);
         Transform(const Vector3D& pos);
-        Transform(const Vector3D& pos, const Vector3D& rot);
-        Transform(const Vector3D& pos, const Quaternion& rot);
+        Transform(const Vector3D& pos, const Matrix33& m);
+        Transform(const Vector3D& pos, const Quaternion& q);
+        Transform(const Vector3D& pos, const Vector3D& euler);
+
+        //rotate by the rotation matrix
+        void rotate(const Matrix33& m);
 
         //rotate around as for an Euler Angle
         //rotation of rot.x degrees around the x axis, etc.
-        void rotate(const Vector3D& rot);
+        void rotate(const Vector3D& euler);
 
         //rotate around as for a Quaternion
-        void rotate(const Quaternion& rot);
+        void rotate(const Quaternion& q);
 
         // //rotate about axis passing through the point
         // void rotateAround(const Vector3D& point, const Vector3D& axis, float angle);
@@ -31,10 +36,13 @@ namespace ge {
         //move to the position
         void translate(const Vector3D& pos);
 
+        //Returns the rotation as a quaternion
+        Quaternion getOrientation() const;
     };
 
     inline Transform::Transform() {
-        position = rotation = Vector3D::vec3_zero;
+        position = Vector3D::vec3_zero;
+        rotation = Matrix33::m33_id;
         scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
@@ -50,37 +58,46 @@ namespace ge {
         scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
-    inline Transform::Transform(const Vector3D& pos, const Vector3D& rot) {
+    inline Transform::Transform(const Vector3D& pos, const Matrix33& m) {
         position = pos;
-        rotation = rot;
+        rotation = m;
         scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
-    inline Transform::Transform(const Vector3D& pos, const Quaternion& rot) {
+    inline Transform::Transform(const Vector3D& pos, const Vector3D& euler) {
         position = pos;
-        rotation = getEulerAngles(rot);
+        rotation = Matrix33(euler);
         scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
-    inline void Transform::rotate(const Vector3D& rot) {
-        rotation.x = rot.x;
-        rotation.y = rot.y;
-        rotation.z = rot.z;
+    inline Transform::Transform(const Vector3D& pos, const Quaternion& q) {
+        position = pos;
+        rotation = Matrix33(q);
+        scale = Vector3D(1.0f, 1.0f, 1.0f);
     }
 
-    inline void Transform::rotate(const Quaternion& rot) {
-        Vector3D tmpRotation = getEulerAngles(rot);
-        rotation.x = tmpRotation.x;
-        rotation.y = tmpRotation.y;
-        rotation.z = tmpRotation.z;
+    inline void Transform::rotate(const Matrix33& m) {
+        rotation = rotation * m;
+    }
+
+    inline void Transform::rotate(const Vector3D& euler) {
+        rotation = rotation * Matrix33(euler);
+    }
+
+    inline void Transform::rotate(const Quaternion& q) {
+        rotation = rotation * Matrix33(q);
     }
 
     // inline void Transform::rotateAround(const Vector3D& point, const Vector3D& axis, float angle) { }
 
     inline void Transform::translate(const Vector3D& pos) {
-        position.x = pos.x;
-        position.y = pos.y;
-        position.z = pos.z;
+        position.x += pos.x;
+        position.y += pos.y;
+        position.z += pos.z;
+    }
+
+    inline Quaternion Transform::getOrientation() const {
+        return Quaternion(rotation);
     }
 }
 

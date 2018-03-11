@@ -4,6 +4,7 @@
 #include <cmath>
 
 #include "GEVector.h"
+#include "GEMatrix33.h"
 
 namespace ge {
 
@@ -18,6 +19,8 @@ namespace ge {
         Quaternion(float e0, float e1, float e2, float e3);
         Quaternion(float _n, const Vector3D& _v);
         Quaternion(const Vector3D& _v, float _n);
+        //build Quaternion from 3X3 (rotation) Matrix
+        Quaternion(const Matrix33& m);
 
         Quaternion& operator+=(const Quaternion& q);
         Quaternion& operator-=(const Quaternion& q);

@@ -3,12 +3,14 @@
 
 #include "GEConstant.h"
 #include "GEVector.h"
+#include "GEQuaternion.h"
 
 namespace ge {
 
     class Matrix33 {
     public:
         static Matrix33 m33_zero;
+        static Matrix33 m33_id;
 
         float e11, e12, e13,
               e21, e22, e23,
@@ -19,6 +21,9 @@ namespace ge {
                  float a21, float a22, float a23,
                  float a31, float a32, float a33);
         Matrix33(float m[3][3]);
+
+        Matrix33(const Quaternion& q);
+        Matrix33(const Vector3D& euler);
         
         Matrix33& operator+=(const Matrix33& m);
         Matrix33& operator-=(const Matrix33& m);
@@ -31,7 +36,15 @@ namespace ge {
     };
 
     //const
-    Matrix33 Matrix33::m33_zero = Matrix33(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    Matrix33 Matrix33::m33_zero = Matrix33(
+        0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f);
+
+    Matrix33 Matrix33::m33_id = Matrix33(
+        1.0f, 0.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 1.0f);
 
     inline Matrix33::Matrix33() {
         e11 = e12 = e13 = 0.0f;
