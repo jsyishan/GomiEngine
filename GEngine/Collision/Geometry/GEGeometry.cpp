@@ -1,6 +1,7 @@
 #include "GEGeometry.h"
 
 namespace ge {
+    
     bool Geometry::rayCast(const Vector3D& begin, const Vector3D& end, const Transform& trans, RaycastHit* hit) const {
         if (isUseGjkRayCast) {
             //return ...

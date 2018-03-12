@@ -28,6 +28,9 @@ namespace ge {
         float magnitude();
         Vector2D& normalize();
         Vector2D& reverse();
+        Vector2D& zero();
+        Vector2D& abs();
+        Vector2D& set(float a, float b);
     };
 
     class Vector3D {
@@ -55,6 +58,9 @@ namespace ge {
         float magnitude();
         Vector3D& normalize();
         Vector3D& reverse();
+        Vector3D& zero();
+        Vector3D& abs();
+        Vector3D& set(float a, float b, float c);
     };
 
     /*
@@ -162,6 +168,30 @@ namespace ge {
         return *this;
     }
 
+    inline Vector3D& Vector3D::zero() {
+        x = 0.0f;
+        y = 0.0f;
+        z = 0.0f;
+
+        return *this;
+    }
+
+    inline Vector3D& Vector3D::abs() {
+        x = x > 0.0f ? x : -x;
+        y = y > 0.0f ? y : -y;
+        z = z > 0.0f ? z : -z;
+        
+        return *this;
+    }
+
+    inline Vector3D& Vector3D::set(float a, float b, float c) {
+        x = a;
+        y = b;
+        z = c;
+
+        return *this;
+    }
+
     /*
     * Functions of Class Vector2D
     *
@@ -236,6 +266,27 @@ namespace ge {
         x = -x;
         y = -y;
 
+        return *this;
+    }
+
+    inline Vector2D& Vector2D::zero() {
+        x = 0.0f;
+        y = 0.0f;
+
+        return *this;
+    }
+
+    inline Vector3D& Vector3D::abs() {
+        x = x > 0.0f ? x : -x;
+        y = y > 0.0f ? y : -y;
+        
+        return *this;
+    }
+
+    inline Vector2D& Vector2D::set(float a, float b) {
+        x = a;
+        y = b;
+        
         return *this;
     }
 

@@ -6,6 +6,8 @@
 #include "../../Math/GETransform.h"
 #include "../../Basis/GESettings.h"
 
+class Matrix33;
+
 namespace ge {
     class Geometry {
     public:
@@ -21,6 +23,7 @@ namespace ge {
 
         virtual ~Geometry() = 0;
         virtual bool rayCast(const Vector3D& begin, const Vector3D& end, const Transform& trans, RaycastHit* hit) const;
+        virtual void computeLocalSupportingVertex(const Vector3D& in, Vector3D* out) const = 0;
 
         Type getType() const;
         float getVolume() const;
@@ -33,6 +36,7 @@ namespace ge {
         float volume;
         bool isUseGjkRayCast;
         float gjkMargin;
+        Matrix33 inertiaCoeff;  // I / m
 
         Geometry(Type type);
         virtual void updateMass() = 0;

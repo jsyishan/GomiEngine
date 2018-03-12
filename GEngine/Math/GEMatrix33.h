@@ -34,6 +34,7 @@ namespace ge {
         float det();
         Matrix33 transpose();
         Matrix33 inverse();
+        Matrix33 diagonal(float a11, float a22, float a33);
     };
 
     inline Matrix33::Matrix33() {
@@ -111,6 +112,14 @@ namespace ge {
             (e22 * e33 - e23 * e32) / d, -(e12 * e33 - e13 * e32) / d, (e12 * e23 - e13 * e22) / d,
             -(e21 * e33 - e23 * e31) / d, (e11 * e33 - e13 * e31) / d, -(e11 * e23 - e13 * e21) / d,
             (e21 * e32 - e22 * e31) / d, -(e11 * e32 - e12 * e31) / d, (e11 * e22 - e12 * e21) / d
+        );
+    }
+
+    inline Matrix33 Matrix33::diagonal(float a11, float a22, float a33) {
+        return Matrix33(
+            a11, 0.0f, 0.0f,
+            0.0f, a22, 0.0f,
+            0.0f, 0.0f, a33
         );
     }
 
