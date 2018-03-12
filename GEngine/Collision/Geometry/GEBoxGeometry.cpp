@@ -1,4 +1,5 @@
 #include <cmath>
+#include <new>
 
 #include "GEBoxGeometry.h"
 
@@ -8,6 +9,13 @@
 #include "../../Math/GEConstant.h"
 
 namespace ge {
+
+    Geometry* BoxGeometry::clone(SmallObjectAllocator* allocator) const {
+        void* mem = allocator->allocate(sizeof(BoxGeometry));
+        BoxGeometry* clone = new (mem) BoxGeometry(halfExtents);
+        *clone = *this;
+        return clone;
+    }
 
     void BoxGeometry::updateMass() {
         volume = halfExtents.x * halfExtents.y * halfExtents.z * 8.0f;

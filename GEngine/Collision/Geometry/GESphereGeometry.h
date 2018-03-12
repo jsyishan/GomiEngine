@@ -8,6 +8,8 @@ namespace ge {
     public:
         SphereGeometry(float r);
 
+        Geometry* clone(SmallObjectAllocator* allocator) const override;
+        void computeLocalSupportingVertex(const Vector3D& in, Vector3D* out) const override;
         float getRadius() const;
 
     private:
@@ -16,7 +18,6 @@ namespace ge {
         void updateMass() override;
         void computeAabb(Aabb* aabb, const Transform& trans) const override;
         bool rayCast(const Vector3D& begin, const Vector3D& end, RaycastHit* hit) const override;
-        void computeLocalSupportingVertex(const Vector3D& in, Vector3D* out) const override;
     };
 
     inline SphereGeometry::SphereGeometry(float r) : Geometry(geometry_sphere) {

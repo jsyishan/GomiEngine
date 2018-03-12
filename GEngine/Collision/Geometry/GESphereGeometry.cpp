@@ -1,4 +1,5 @@
 #include <cmath>
+#include <new>
 
 #include "GESphereGeometry.h"
 #include "../../Math/GEConstant.h"
@@ -6,6 +7,13 @@
 #include "../../Math/GEVector.h"
 
 namespace ge {
+    Geometry* SphereGeometry::clone(SmallObjectAllocator* allocator) const {
+        void* mem = allocator->allocate(sizeof(SphereGeometry));
+        SphereGeometry* clone = new (mem) SphereGeometry(radius);
+        *clone = *this;
+        return clone;
+    }
+
     void SphereGeometry::updateMass() {
         volume = 4 / 3 * PI * radius * radius * radius;
         inertiaCoeff = Matrix33().diagonal(2 / 5 * radius * radius, 2 / 5 * radius * radius, 2 / 5 * radius * radius);

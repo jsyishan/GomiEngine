@@ -13,6 +13,7 @@ namespace ge {
     public:
         BoxGeometry(const Vector3D& hExtents);
 
+        Geometry* clone(SmallObjectAllocator* allocator) const override;
         const Vector3D& getHalfExtents() const;
         void setHalfExtents(const Vector3D& hExtents);
 

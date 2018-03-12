@@ -5,6 +5,7 @@
 #include "GERaycastHit.h"
 #include "../../Math/GETransform.h"
 #include "../../Basis/GESettings.h"
+#include "../../Basis/GESOA.h"
 
 class Matrix33;
 
@@ -22,6 +23,7 @@ namespace ge {
         };
 
         virtual ~Geometry() = 0;
+        virtual Geometry* clone(SmallObjectAllocator* allocator) const = 0;
         virtual bool rayCast(const Vector3D& begin, const Vector3D& end, const Transform& trans, RaycastHit* hit) const;
         virtual void computeLocalSupportingVertex(const Vector3D& in, Vector3D* out) const = 0;
 
