@@ -7,7 +7,7 @@ namespace ge {
 
     Geometry* ConvexHullGeometry::clone(SmallObjectAllocator* allocator) const {
         void* mem = allocator->allocate(sizeof(ConvexHullGeometry));
-        ConvexHullGeometry* clone = new (mem) ConvexHullGeometry(vertices, size);
+        ConvexHullGeometry* clone = new (mem) ConvexHullGeometry(vertices);
         *clone = *this;
         return clone;
     }
