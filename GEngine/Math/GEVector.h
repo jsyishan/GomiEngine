@@ -25,7 +25,8 @@ namespace ge {
         Vector2D operator-();
         Vector2D operator~(); //get a new Vector3D object which is normalized
 
-        float magnitude();
+        float magnitude() const;
+        float magnitudeWithoutSqrt() const;
         Vector2D& normalize();
         Vector2D& reverse();
         Vector2D& zero();
@@ -58,12 +59,14 @@ namespace ge {
         Vector3D operator-();
         Vector3D operator~(); //get a new Vector3D object which is normalized
 
-        float magnitude();
+        float magnitude() const;
+        float magnitudeWithoutSqrt() const;
         Vector3D& normalize();
         Vector3D& reverse();
         Vector3D& zero();
         Vector3D& abs();
         Vector3D& set(float a, float b, float c);
+        Vector3D& set(const Vector3D& v);
     };
 
     /*
@@ -153,8 +156,12 @@ namespace ge {
         return v;
     }
 
-    inline float Vector3D::magnitude() {
+    inline float Vector3D::magnitude() const {
         return (float) std::sqrt(x * x + y * y + z * z);
+    }
+
+    inline float Vector3D::magnitudeWithoutSqrt() const {
+        return  x * x + y * y + z * z;
     }
 
     inline Vector3D& Vector3D::normalize() {
@@ -199,6 +206,14 @@ namespace ge {
         x = a;
         y = b;
         z = c;
+
+        return *this;
+    }
+
+    inline Vector3D& Vector3D::set(const Vector3D& v) {
+        x = v.x;
+        y = v.y;
+        z = v.z;
 
         return *this;
     }
@@ -257,8 +272,12 @@ namespace ge {
         return v;
     }
 
-    inline float Vector2D::magnitude() {
+    inline float Vector2D::magnitude() const {
         return (float) std::sqrt(x * x + y * y);
+    }
+
+    inline float Vector2D::magnitudeWithoutSqrt() const {
+        return x * x + y * y;
     }
 
     inline Vector2D& Vector2D::normalize() {

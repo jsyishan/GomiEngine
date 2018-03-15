@@ -76,6 +76,11 @@ namespace ge {
         return std::abs(f1 - f2) < FLOAT_TOL;
     }
 
+    // GJK/EPA helper
+    int projectingOrigin(const Vector3D& v1, const Vector3D& v2, Vector3D* out);
+    int projectingOrigin(const Vector3D& v1, const Vector3D& v2, const Vector3D& v3, Vector3D* out);
+    int projectingOrigin(const Vector3D& v1, const Vector3D& v2, const Vector3D& v3, const Vector3D& v4, Vector3D* out);
+
 }
 
 #endif
