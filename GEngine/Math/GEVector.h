@@ -15,10 +15,10 @@ namespace ge {
 
         Vector2D();
         Vector2D(float i, float j);
-        Vector2D(const Vector2D &v2);
+        Vector2D(const Vector2D& v2);
 
-        Vector2D& operator+=(const Vector2D &v2);
-        Vector2D& operator-=(const Vector2D &v2);
+        Vector2D& operator+=(const Vector2D& v2);
+        Vector2D& operator-=(const Vector2D& v2);
         Vector2D& operator*=(float s);
         Vector2D& operator/=(float s);
 
@@ -42,15 +42,18 @@ namespace ge {
 
         Vector3D();
         Vector3D(float i, float j, float k);
-        Vector3D(const Vector3D &v);
-        Vector3D(const Vector2D &v2);
-        Vector3D(const Vector2D &v2, float k);
-        Vector3D(float k, const Vector2D &v2);
+        Vector3D(const Vector3D& v);
+        Vector3D(const Vector2D& v2);
+        Vector3D(const Vector2D& v2, float k);
+        Vector3D(float k, const Vector2D& v2);
 
-        Vector3D& operator+=(const Vector3D &v);
-        Vector3D& operator-=(const Vector3D &v);
+        Vector3D& operator+=(const Vector3D& v);
+        Vector3D& operator-=(const Vector3D& v);
         Vector3D& operator*=(float s);
         Vector3D& operator/=(float s);
+
+        bool operator==(const Vector3D& v);
+        bool operator!=(const Vector3D& v);
 
         Vector3D operator-();
         Vector3D operator~(); //get a new Vector3D object which is normalized
@@ -130,6 +133,14 @@ namespace ge {
         y /= s;
         z /= s;
         return *this;
+    }
+
+    inline bool Vector3D::operator==(const Vector3D& v) {
+        return (x == v.x && y == v.y && z == v.z);
+    }
+
+    inline bool Vector3D::operator!=(const Vector3D& v) {
+        return (x != v.x || y != v.y || z != v.z);
     }
 
     inline Vector3D Vector3D::operator-() {
