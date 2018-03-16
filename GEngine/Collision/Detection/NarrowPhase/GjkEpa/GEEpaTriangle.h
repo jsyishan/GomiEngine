@@ -3,6 +3,7 @@
 
 #include "GEEpaVertex.h"
 #include "../../../../Math/GEVector.h"
+#include "../../../../Basis/GESOA.h"
 
 namespace ge {
     class EpaTriangle {
@@ -14,7 +15,7 @@ namespace ge {
         ~EpaTriangle();
 
         bool checkVisible(const Vector3D& from);
-        bool init(EpaVertex* v1, EpaVertex* v2, EpaVertex* v3, const Vector3D& center, bool check = false);
+        bool init(EpaVertex* v1, EpaVertex* v2, EpaVertex* v3, const Vector3D& center, bool check);
         bool setAdjTriangle();
         bool removeAdjTriangle();
 

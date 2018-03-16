@@ -4,6 +4,7 @@
 
 //Gjk and Epa
 #define gjk_margin 0.05f
+#define max_epa_vertices 128
 
 
 //contacts

@@ -306,7 +306,7 @@ namespace ge {
         return *this;
     }
 
-    inline Vector3D& Vector3D::abs() {
+    inline Vector2D& Vector2D::abs() {
         x = x > 0.0f ? x : -x;
         y = y > 0.0f ? y : -y;
         

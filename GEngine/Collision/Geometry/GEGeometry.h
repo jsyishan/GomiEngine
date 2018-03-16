@@ -14,12 +14,12 @@ namespace ge {
     public:
         //Type of Geometry
         enum Type {
-            geometry_box = 0,
-            geometry_sphere = 1,
-            geometry_cylinder = 2,
-            geometry_cone = 3,
-            geometry_capsule = 4,
-            geometry_convex_hull = 5
+            geometry_box,
+            geometry_sphere,
+            geometry_cylinder,
+            geometry_cone,
+            geometry_capsule,
+            geometry_convex_hull
         };
 
         virtual ~Geometry() = 0;

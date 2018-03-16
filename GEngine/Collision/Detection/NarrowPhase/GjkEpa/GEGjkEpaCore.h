@@ -4,12 +4,12 @@
 namespace ge {
     struct GjkEpaResultState {
         enum ResultState {
-            SUCCEEDED = 0x00,
-            GJK_NOT_CONVERGE = 0x01,
-            GJK_FAILED_TO_MAKE_TETRAHEDRON = 0x02,
-            EPA_NOT_CONVERGE = 0x11,
-            EPA_FAILED_TO_INIT = 0x12,
-            EPA_FAILED_TO_ADD_VERTEX = 0x13
+            gjk_succeeded = 0x00,
+            gjk_not_converge = 0x01,
+            gjk_failed_to_make_tetrahedron = 0x02,
+            epa_not_converge = 0x11,
+            epa_failed_to_init = 0x12,
+            epa_failed_to_add_vertex = 0x13
         };
 
         ResultState resultState;
